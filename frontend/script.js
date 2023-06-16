@@ -29,8 +29,7 @@ function ataque() {
   
     // Alterna a vez para o próximo jogador
     currentPlayer = (currentPlayer === 1) ? 2 : 1;
-    var turnElement = document.getElementById("turn");
-    turnElement.textContent = "Vez do jogador: " + currentPlayer;
+    updateTurnMessage();
   
     // Remove a classe de animação após um tempo
     setTimeout(function() {
@@ -56,14 +55,14 @@ function ataque() {
   
     // Alterna a vez para o próximo jogador
     currentPlayer = (currentPlayer === 1) ? 2 : 1;
-    var turnElement = document.getElementById("turn");
-    turnElement.textContent = "Vez do jogador: " + currentPlayer;
+    updateTurnMessage();
   
     // Remove a classe de animação após um tempo
     setTimeout(function() {
       playerElement.classList.remove("defense");
     }, 500);
   }
+  
 function recuperarVida() {
   // Lógica de recuperação de vida do jogador atual
   
@@ -78,8 +77,14 @@ function recuperarVida() {
 
   // Alterna a vez para o próximo jogador
   currentPlayer = (currentPlayer === 1) ? 2 : 1;
-  var turnElement = document.getElementById("turn");
-  turnElement.textContent = "Vez do jogador: " + currentPlayer;
+  updateTurnMessage();
+}
+
+function updateTurnMessage() {
+    var turnElement = document.getElementById("turn");
+    var playerName = (currentPlayer === 1) ? "Player 1" : "Player 2";
+    turnElement.textContent = playerName + " - Sua vez!";
+    turnElement.classList.add("turn");
 }
 
 // Inicializa as barras de vida
