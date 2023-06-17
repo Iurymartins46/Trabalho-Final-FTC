@@ -10,9 +10,8 @@ function updateHealthBar(playerId) {
   healthBar.style.width = percentage + "%";
 }
 function ataque() {
-
   // Remove a classe de animação do jogador atacado
-  var playerToAttack = (currentPlayer === 1) ? 2 : 1;
+  var playerToAttack = (currentPlayer === 1) ? 1 : 2;
   var playerElement = document.getElementById("player" + playerToAttack);
   playerElement.classList.remove("shake");
   
@@ -37,7 +36,6 @@ function ataque() {
   // Define a imagem do GIF de ataque
   gifElement.style.backgroundImage = "url('" + gifPath + "')";
 
-  // Atualiza a vida do jogador atual
   // Atualiza a vida do jogador atual
   if (currentPlayer === 1) {
     health2 -= 20;
