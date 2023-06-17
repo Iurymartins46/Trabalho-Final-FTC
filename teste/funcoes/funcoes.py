@@ -19,8 +19,7 @@ def moore(maquina1, maquina2):
     duelista2 = "Nehrim"
     quemJoga = random.randint(1, 2)
     outroJogador = 0
-    qtdLeiturasPosiveis = 3
-
+    numeroTransicao = maquina1["transicao"]
     while vidaJogador1 > 0 or vidaJogador2 > 0:
         print(f"\n\n->->->          Turno {count}          <-<-<-")
         if quemJoga == 1:
@@ -31,10 +30,10 @@ def moore(maquina1, maquina2):
             outroJogador = 1
 
         leitura = None
-        while leitura not in [0, 1, 2]:
+        while leitura not in numeroTransicao:
             leitura = int(input("\nQual leitura você deseja fazer?: "))
 
-        for i in range(0, qtdLeiturasPosiveis):
+        for i in range(0, len(numeroTransicao)):
             if maquina1[f"{estadoAtualMaquina1}"][0][i] == leitura:
                 estadoAtualMaquina1 = maquina1[f"{estadoAtualMaquina1}"][1][i]
             if maquina2[f"{estadoAtualMaquina2}"][0][i] == leitura:
@@ -153,3 +152,29 @@ def obterEstadoInicial(maquina1, maquina2):
             estadoInicialMaquina2 = key
     return estadoInicialMaquina1, estadoInicialMaquina2
 
+
+def leituraArquivoMoore(filename):
+    maquina = dict()
+    with open(filename, 'r') as file:
+        content = file.read()
+    lines = content.split('\n')
+    Q = lines[0].split(" ")[1:]
+    maquina["transicao"] = list[int]()
+    for estado in Q:
+        maquina[f"{estado}"] = [[], []]
+    for i in range(2, len(lines)):
+        transicao = lines[i]
+        transicao = transicao.split(" -> ")
+        estadoOrigem = transicao[0]
+        transicao = transicao[1]
+        transicao = transicao.split(" | ")
+        estadoDestino = transicao[0]
+        transicao = transicao[1].split(" ")
+        transicao = list(map(int, transicao))
+        for numeroFazTransicao in transicao:
+            maquina[f"{estadoOrigem}"][0].append(numeroFazTransicao)
+            maquina[f"{estadoOrigem}"][1].append(estadoDestino)
+            if numeroFazTransicao not in maquina["transicao"]:
+                maquina["transicao"].append(numeroFazTransicao)
+
+    return maquina

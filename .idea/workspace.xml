@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cdd437c1-cd24-4de0-96d4-4a605ef22f01" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/TesteArquivo/PLAYER01.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TesteArquivo/app.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste/funcoes/funcoes.py" beforeDir="false" afterPath="$PROJECT_DIR$/teste/funcoes/funcoes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teste/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/teste/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2RF3ptxYCLJpXusznd4Qf6F2rK2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;H:/UFV/5ºPeriodo/CCF 131 - Fundamentos da teoria da Computacao/Trabalho-Final-FTC&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MTCustomThemeConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\UFV\5ºPeriodo\CCF 131 - Fundamentos da teoria da Computacao\Trabalho-Final-FTC\TesteArquivo" />
+      <recent name="H:\UFV\5ºPeriodo\CCF 131 - Fundamentos da teoria da Computacao\Trabalho-Final-FTC\teste" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cdd437c1-cd24-4de0-96d4-4a605ef22f01" name="Changes" comment="" />
+      <created>1686832188096</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1686832188096</updated>
+      <workItem from="1686832193671" duration="147000" />
+      <workItem from="1686866489038" duration="6317000" />
+      <workItem from="1686880200064" duration="9081000" />
+      <workItem from="1686889933756" duration="242000" />
+      <workItem from="1686916183580" duration="9329000" />
+      <workItem from="1687012384184" duration="648000" />
+      <workItem from="1687013039560" duration="8875000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Trabalho_Final_FTC$app.coverage" NAME="app Coverage Results" MODIFIED="1687017911113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/TesteArquivo" />
+    <SUITE FILE_PATH="coverage/Trabalho_Final_FTC$funcoes.coverage" NAME="funcoes Coverage Results" MODIFIED="1686935304372" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/teste/funcoes" />
+    <SUITE FILE_PATH="coverage/Trabalho_Final_FTC$main.coverage" NAME="main Coverage Results" MODIFIED="1687022262160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/teste" />
+    <SUITE FILE_PATH="coverage/Trabalho_Final_FTC$api.coverage" NAME="api Coverage Results" MODIFIED="1686876783219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+  </component>
+</project>
