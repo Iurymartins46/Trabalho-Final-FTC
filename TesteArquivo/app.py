@@ -54,3 +54,5 @@ transition_matrix = generate_transition_matrix('PLAYER01.txt')
 # Imprimir a matriz de transição
 for row in transition_matrix:
     print(row)
+    
+#A matriz de transições representa as possíveis transições entre os estados do sistema,-1 caso não exista a transição de um estado para o outro.
