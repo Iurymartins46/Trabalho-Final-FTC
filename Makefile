@@ -1,2 +1,2 @@
 runTeste:
-	python teste/main.py
+	python src/main.py

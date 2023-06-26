@@ -5,6 +5,8 @@ expressaoRegularPadrao = r'^\w'
 def jogar(maquina1, maquina2, escolha):
     if(escolha == 1):
         moore(maquina1, maquina2)
+    if (escolha == 2):
+        AFD(maquina1, maquina2)
 
 def moore(maquina1, maquina2):
     vidaJogador1 = random.randint(0, 100)
@@ -318,7 +320,7 @@ def obterEstadoInicial(maquina1, maquina2):
 def leituraArquivoMoore(filename):
     maquina = dict()
     with open(filename, 'r') as file:
-        content = file.read()
+        content = file.read().rstrip('\n')
     lines = content.split('\n')
     Q = lines[0].split(" ")[1:]
     maquina["transicao"] = list[int]()
