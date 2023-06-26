@@ -1,7 +1,7 @@
 Q: IN E1 A1 D1 A2 F1
 I: IN
-IA -> E1 | 0
-IA -> A1 | 1
+IN -> E1 | 0
+IN -> A1 | 1
 A1 -> D1 | 0
 A1 -> E1 | 1
 D1 -> E1 | 0

@@ -136,6 +136,7 @@ def moore(maquina1, maquina2):
         count += 1
 
 def AFD(maquina1, maquina2):
+    print(f"-------------------------     ENTREI AFD     -------------------------")
     vidaJogador1 = random.randint(0, 100)
     vidaJogador2 = vidaJogador1
     print(f"Vida do duelista de Arazeal: {vidaJogador1}")
@@ -274,7 +275,7 @@ def AFD(maquina1, maquina2):
         else:
             print(f"\n{mensaguemJogador2}")
             print(f"\n{mensaguemJogador1}")
-            print(f"Vida restante do duelista de {duelista2}: {vida2}")
+            print(f"\nVida restante do duelista de {duelista2}: {vida2}")
             print(f"Vida restante do duelista de {duelista1}: {vida1}")
 
         if pleam1 == "F" and pleam2 == "F":

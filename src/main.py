@@ -7,11 +7,8 @@ def main():
         escolha = int(input("Qual sua escolha: "))
     #maquina1 = funcoes.leituraArquivoMoore('teste/maquinaMoore01.txt')
     #maquina2 = funcoes.leituraArquivoMoore('teste/maquinaMoore02.txt')
-    maquina1 = funcoes.leituraArquivoMoore('teste/maquinaMoore01.txt')
-    maquina2 = funcoes.leituraArquivoMoore('teste/maquinaMoore02.txt')
-    #print(maquina1)
-    print()
-    #print(maquina2)
+    maquina1 = funcoes.leituraArquivoMoore('teste/maquinaAFD01.txt')
+    maquina2 = funcoes.leituraArquivoMoore('teste/maquinaAFD02.txt')
     funcoes.jogar(maquina1, maquina2, escolha)
 
 if __name__ == "__main__":
