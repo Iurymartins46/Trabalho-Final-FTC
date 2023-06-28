@@ -10,5 +10,13 @@ def saveMooreMachine():
     response = save.action(request_data)
     return response, 201
 
+@app.route('/readMachhine', methods=['POST'])
+def readMachine():
+    return 'Hello, World!'
+
+@app.route('/play', methods=['POST'])
+def play():
+    return 'Hello, World!'
+
 if __name__ == '__main__':
     app.run()
