@@ -8,4 +8,5 @@ class MooreMachine:
     def getMaquina(self):
         return self.maquina    
     
-    def jogadaMoore
+    def jogadaMoore(self):
+        

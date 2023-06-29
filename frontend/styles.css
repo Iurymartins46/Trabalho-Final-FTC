@@ -1,9 +1,16 @@
+body {
+  background-image: url('fundo.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 
 .player-name {
   font-family: "Arial", sans-serif;
