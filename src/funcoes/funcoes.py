@@ -1,6 +1,9 @@
 import re
 import random
+from Domain.Moore import MooreMachine
+
 expressaoRegularPadrao = r'^\w'
+leituraMaquinaService = leituraMaquina()
 
 def jogar(maquina1, maquina2, escolha):
     if(escolha == 1):
@@ -8,6 +11,14 @@ def jogar(maquina1, maquina2, escolha):
     if (escolha == 2):
         AFD(maquina1, maquina2)
 
+def getPleam(maquina, numeroTransicao, leitura, estadoAtualMaquina, vidaJogador):
+    for i in range(0, len(numeroTransicao)):
+        if maquina[f"{estadoAtualMaquina}"][0][i] == leitura and vidaJogador != 0:
+            estadoAtualAUX1  = maquina[f"{estadoAtualMaquina}"][1][i]
+            pleam = re.search(expressaoRegularPadrao, estadoAtualAUX1)
+            pleam = pleam.group()
+
+    return pleam
 
 def rodadaMoore(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2):
     for i in range(0, len(numeroTransicao)):
@@ -142,17 +153,11 @@ def moore(maquina1, maquina2):
         outroJogador = quemJoga
         quemJoga = aux
         count += 1
-        
+
+    
 def rodadaADF(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2, count):
-    for i in range(0, len(numeroTransicao)):
-        if maquina1[f"{estadoAtualMaquina1}"][0][i] == leitura and vidaJogador1 != 0:
-            estadoAtualAUX1  = maquina1[f"{estadoAtualMaquina1}"][1][i]
-            pleam1 = re.search(expressaoRegularPadrao, estadoAtualAUX1)
-            pleam1 = pleam1.group()
-        if maquina2[f"{estadoAtualMaquina2}"][0][i] == leitura and vidaJogador2 != 0:
-            estadoAtualAUX2 = maquina2[f"{estadoAtualMaquina2}"][1][i]
-            pleam2 = re.search(expressaoRegularPadrao, estadoAtualAUX2)
-            pleam2 = pleam2.group()
+    pleam1 = getPleam(maquina1, numeroTransicao, leitura, estadoAtualMaquina1, vidaJogador1)
+    pleam2 = getPleam(maquina2, numeroTransicao, leitura, estadoAtualMaquina2, vidaJogador2)
 
     valorAtributoJogador1 = random.randint(1, 10)
     valorAtributoJogador2 = random.randint(1, 10)
