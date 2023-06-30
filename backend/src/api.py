@@ -1,22 +1,15 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from Action.action import SaveAction
+from Action.listArquivos import ListArquivos
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/saveMooreMachine', methods=['POST'])
-def saveMooreMachine():
-    save = SaveAction()
-    request_data = request.get_json()
-    response = save.action(request_data)
-    return response, 201
-
-@app.route('/readMachhine', methods=['POST'])
-def readMachine():
-    return 'Hello, World!'
-
-@app.route('/play', methods=['POST'])
-def play():
-    return 'Hello, World!'
+@app.route('/listarArquivos', methods=['GET'])
+def listarArquivos():
+    arq = ListArquivos()
+    return arq.list()
 
 if __name__ == '__main__':
     app.run()

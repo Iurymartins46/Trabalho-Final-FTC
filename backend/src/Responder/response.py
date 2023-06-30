@@ -1,3 +1,5 @@
+import json
+
 class Response:
     def formatData(self, mooreMachine):
         data = {
@@ -9,4 +11,12 @@ class Response:
             "transitions": mooreMachine.transitions,
             "initial_state": mooreMachine.current_state
         }
+        return data
+
+    def formatArquivos(self, arquivos):
+        data = {
+            "status" : "Deu bom",
+            "arquivos" : arquivos
+        }
+
         return data
