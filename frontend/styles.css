@@ -1,8 +1,28 @@
+@font-face {
+  font-family: 'DePixelHalbfett';
+  src: url('fonts/DePixelHalbfett.ttf') format('truetype');
+}
+
 body {
-  background-image: url('fundo.gif');
+  background-image: url('images/fundo.gif');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  font-family: 'DePixelHalbfett';
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 87.5%;
+  text-align: center;
+}
+
+footer img {
+  width: 100%;
+  height: auto;
 }
 
 
@@ -10,10 +30,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.player-name {
-  font-family: "Arial", sans-serif;
 }
 
 .players {
@@ -81,7 +97,8 @@ body {
   color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-family: 'DePixelHalbfett';
+  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }

@@ -66,7 +66,6 @@ def rodadaMoore(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJ
         vida1 = f"{vida1} + {valorAtributoJogador1}"
         vidaJogador1 += valorAtributoJogador1
 
-
     if pleam2 == "A":
         mensaguemJogador2 = f"Alcancou um estado de Ataque em {duelista2}" \
                             f"\nDano no duelista de {duelista1}: {valorAtributoJogador2}"
@@ -110,7 +109,7 @@ def rodadaMoore(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJ
 
     return vidaJogador1, vidaJogador2, estadoAtualMaquina1, estadoAtualMaquina2, vida1, vida2, continuar
 
-        
+
 def moore(maquina1, maquina2):
     vidaJogador1 = random.randint(0, 100)
     vidaJogador2 = vidaJogador1
@@ -138,9 +137,9 @@ def moore(maquina1, maquina2):
         leitura = None
         while leitura not in numeroTransicao:
             leitura = int(input("\nQual leitura você deseja fazer?: "))
-        
+
         vidaJogador1, vidaJogador2, estadoAtualMaquina1, estadoAtualMaquina2, vida1, vida2, continuar = rodadaMoore(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2)
-        
+
         print(f"\nVida restante do duelista de {duelista1}: {vida1}")
         print(f"Vida restante do duelista de {duelista2}: {vida2}")
         if continuar == False:
@@ -154,7 +153,7 @@ def moore(maquina1, maquina2):
         quemJoga = aux
         count += 1
 
-    
+
 def rodadaADF(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2, count):
     pleam1 = getPleam(maquina1, numeroTransicao, leitura, estadoAtualMaquina1, vidaJogador1)
     pleam2 = getPleam(maquina2, numeroTransicao, leitura, estadoAtualMaquina2, vidaJogador2)
@@ -294,7 +293,7 @@ def AFD(maquina1, maquina2):
             leitura = int(input("\nQual leitura você deseja fazer?: "))
 
         vidaJogador1, vidaJogador2, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2 = rodadaADF(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2, count)
-        
+
         if pleam1 == "F" and pleam2 == "F":
             if vidaJogador1 < vidaJogador2:
                 print(f"{duelista2} vitorioso!")

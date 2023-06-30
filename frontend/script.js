@@ -14,7 +14,7 @@ function ataque() {
   var playerToAttack = (currentPlayer === 1) ? 1 : 2;
   var playerElement = document.getElementById("player" + playerToAttack);
   playerElement.classList.remove("shake");
-  
+
   // Adiciona a classe de sobreposição ao jogador atacado
   var gifElement = document.getElementById("player" + playerToAttack + "-gif");
   gifElement.classList.add("player-gif");
@@ -26,10 +26,10 @@ function ataque() {
   var gifPath = "";
   var duration = 0;
   if (playerToAttack === 1) {
-    gifPath = "tank1atk.gif";
+    gifPath = "images/tank1atk.gif";
     duration = 1600; // 1.6 segundos
   } else {
-    gifPath = "tank2atk.gif";
+    gifPath = "images/tank2atk.gif";
     duration = 3100; // 3.1 segundos
   }
 
@@ -75,7 +75,7 @@ function ataque() {
 
 function defesa() {
   // Lógica de defesa do jogador atual
-  
+
   // Adiciona a classe de animação de defesa ao jogador atual
   var playerElement = document.getElementById("player" + currentPlayer);
   playerElement.classList.add("defense");
@@ -101,7 +101,7 @@ function defesa() {
 
 function recuperarVida() {
   // Lógica de recuperação de vida do jogador atual
-  
+
   // Atualiza a vida do jogador atual
   if (currentPlayer === 1) {
     health1 = maxHealth;
