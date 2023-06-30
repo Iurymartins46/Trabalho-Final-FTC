@@ -40,19 +40,16 @@ footer img {
   display: flex;
   flex-direction: column;
   align-items: center;
+  top: 100px;
+  width: 500px;
+  height: 500px;
   margin: 20px;
   position: relative; /* Adicione esta linha */
 }
 
-.player img {
-  width: 480px;
-  height: 360px;
-}
-
 .player-gif {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 30px;
   width: 480px;
   height: 360px;
   pointer-events: none;
@@ -67,22 +64,52 @@ footer img {
 }
 
 .health-bar {
-  width: 150px;
-  height: 20px;
-  background-color: #ddd;
-  border-radius: 10px;
-  overflow: hidden;
+  position: absolute;
+  left: 110px;
+  top: 45px;
+  width: 300px; /* Ajuste a largura conforme necessário */
+  height: 45px; /* Ajuste a altura conforme necessário */
+  background-color: #ddd; /* Cor de fundo da barra de vida */
+}
+
+.health-bar-2 {
+  position: absolute;
+  left: 95px;
+  top: 45px;
+  width: 300px; /* Ajuste a largura conforme necessário */
+  height: 45px; /* Ajuste a altura conforme necessário */
+  background-color: #ddd; /* Cor de fundo da barra de vida */
+  transform: scaleX(-1); /* Inverte a escala horizontalmente */
 }
 
 .health-bar-inner {
+  position: relative;
+  width: 100%;
   height: 100%;
-  background-color: #4caf50;
-  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.health-bar-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #6aff6a; /* Cor da barra de vida verde */
+}
+
+.health-bar-image {
+  position: absolute;
+  top: 0;
+  left: 60;
+  width: 400px;
+  height: auto;
+  z-index: 1;
 }
 
 .turn {
   font-size: 20px;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 .options {
@@ -110,27 +137,9 @@ footer img {
   position: absolute;
   top: 0;
   left: 0;
-  width: 200px;
-  height: 200px;
+  width: 500px;
+  height: 500px;
   display: none;
-}
-
-@keyframes shake-animation {
-  0% { transform: translateX(0); }
-  10% { transform: translateX(-5px) rotate(-5deg); }
-  20% { transform: translateX(5px) rotate(5deg); }
-  30% { transform: translateX(-5px) rotate(-5deg); }
-  40% { transform: translateX(5px) rotate(5deg); }
-  50% { transform: translateX(-5px) rotate(-5deg); }
-  60% { transform: translateX(5px) rotate(5deg); }
-  70% { transform: translateX(-5px) rotate(-5deg); }
-  80% { transform: translateX(5px) rotate(5deg); }
-  90% { transform: translateX(-5px) rotate(-5deg); }
-  100% { transform: translateX(0); }
-}
-
-.shake {
-  animation: shake-animation 0.5s ease-in-out;
 }
 
 @keyframes defense-animation {
@@ -238,3 +247,4 @@ footer img {
   font-size: 14px;
   cursor: pointer;
 }
+
