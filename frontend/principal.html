@@ -3,15 +3,20 @@
 <head>
   <title>Jogo de Players</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div class="container">
+    <div class="options">
+      <button onclick="ataque()">Ataque</button>
+      <button onclick="defesa()">Defesa</button>
+      <button onclick="recuperarVida()">Recuperar Vida</button>
+    </div>
     <div class="players">
       <div class="player" id="player1">
-        <img src="tank1.gif" alt="Player 1" class="player-image">
+        <img src="images/Tank1.gif" alt="Player 1" class="player-image">
         <div id="player1-gif" class="player-gif"></div>
-        <img src="close.png" alt="Close" class="close">
+        <img src="images/Explosion.gif" alt="Close" class="close">
         <span class="player-name">Player 1</span>
         <div class="health-bar">
           <div class="health-bar-inner" id="healthBar1"></div>
@@ -19,8 +24,8 @@
         <span class="plus-icon" id="plusIcon1"><i class="fas fa-plus"></i></span>
       </div>
       <div class="player" id="player2">
-        <img src="tank2.gif" alt="Player 2" class="player-image">
-        <img src="close.png" alt="Close" class="close">
+        <img src="images/Tank2.gif" alt="Player 2" class="player-image">
+        <img src="images/Explosion.gif" alt="Close" class="close">
         <div id="player2-gif" class="player-gif"></div>
         <span class="player-name">Player 2</span>
         <div class="health-bar">
@@ -30,13 +35,30 @@
       </div>
     </div>
     <div class="turn" id="turn">Vez do jogador: 1</div>
-    <div class="options">
-      <button onclick="ataque()">Ataque</button>
-      <button onclick="defesa()">Defesa</button>
-      <button onclick="recuperarVida()">Recuperar Vida</button>
-    </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
+
+<footer>
+  <img src="images/complementoFundo.png">
+</footer>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h2>Escolha a máquina de cada jogador</h2>
+    <div class="player-machine">
+      <label for="player1-machine">Jogador 1:</label>
+      <select id="player1-machine"></select>
+    </div>
+    <div class="player-machine">
+      <label for="player2-machine">Jogador 2:</label>
+      <select id="player2-machine"></select>
+    </div>
+    <button id="start-button" class="start-button">Iniciar Partida</button>
+  </div>
+</div>
+
+<script src="consumirApi.js"></script>
+<script src="script.js"></script>
+
 </html>

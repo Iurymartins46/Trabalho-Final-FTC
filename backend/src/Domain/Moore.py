@@ -6,7 +6,4 @@ class MooreMachine:
         self.maquina = maquina
 
     def getMaquina(self):
-        return self.maquina    
-    
-    def jogadaMoore(self):
-        
+        return self.maquina

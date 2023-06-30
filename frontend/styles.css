@@ -1,19 +1,34 @@
+@font-face {
+  font-family: 'DePixelHalbfett';
+  src: url('fonts/DePixelHalbfett.ttf') format('truetype');
+}
+
 body {
-  background-image: url('fundo.gif');
+  background-image: url('images/fundo.gif');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
+  font-family: 'DePixelHalbfett';
 }
 
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 88%;
+  text-align: center;
+}
+
+footer img {
+  width: 100%;
+  height: auto;
+}
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.player-name {
-  font-family: "Arial", sans-serif;
 }
 
 .players {
@@ -30,16 +45,16 @@ body {
 }
 
 .player img {
-  width: 400px;
-  height: 400px;
+  width: 480px;
+  height: 360px;
 }
 
 .player-gif {
   position: absolute;
   top: 0;
   left: 0;
-  width: 400px;
-  height: 400px;
+  width: 480px;
+  height: 360px;
   pointer-events: none;
   z-index: 2;
   background-size: cover;
@@ -81,7 +96,8 @@ body {
   color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-family: 'DePixelHalbfett';
+  font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
@@ -165,4 +181,60 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+
+/* Estilos para o modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 300px;
+  max-width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.player-machine {
+  margin-bottom: 20px;
+}
+
+.player-machine label {
+  display: block;
+}
+
+.player-machine select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-family: 'DePixelHalbfett';
+  font-size: 10px;
+}
+
+.start-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'DePixelHalbfett';
+  font-size: 14px;
+  cursor: pointer;
 }
