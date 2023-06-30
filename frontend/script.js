@@ -26,11 +26,11 @@ function ataque() {
   var gifPath = "";
   var duration = 0;
   if (playerToAttack === 1) {
-    gifPath = "images/tank1atk.gif";
-    duration = 1600; // 1.6 segundos
+    gifPath = "images/Tank1Atk.gif";
+    duration = 1000; // 1.0 segundos
   } else {
-    gifPath = "images/tank2atk.gif";
-    duration = 3100; // 3.1 segundos
+    gifPath = "images/Tank2Atk.gif";
+    duration = 1000; // 1.0 segundos
   }
 
   // Define a imagem do GIF de ataque

@@ -46,16 +46,16 @@ footer img {
 }
 
 .player img {
-  width: 400px;
-  height: 400px;
+  width: 480px;
+  height: 360px;
 }
 
 .player-gif {
   position: absolute;
   top: 0;
   left: 0;
-  width: 400px;
-  height: 400px;
+  width: 480px;
+  height: 360px;
   pointer-events: none;
   z-index: 2;
   background-size: cover;
