@@ -3,6 +3,61 @@ var maxHealth = 100;
 var health1 = maxHealth;
 var health2 = maxHealth;
 
+// Obter elementos dos selects
+var player1MachineSelect = document.getElementById("player1-machine");
+var player2MachineSelect = document.getElementById("player2-machine");
+
+// Função para preencher as opções do select
+function preencherOpcoesSelect(arquivos) {
+  arquivos.forEach(function(arquivo) {
+    var option = document.createElement("option");
+    option.value = arquivo;
+    option.text = arquivo;
+    player1MachineSelect.appendChild(option);
+
+    option = document.createElement("option");
+    option.value = arquivo;
+    option.text = arquivo;
+    player2MachineSelect.appendChild(option);
+  });
+}
+
+// Carregar arquivos ao abrir o modal
+listarArquivos()
+  .then(function(arquivos) {
+    preencherOpcoesSelect(arquivos);
+  })
+  .catch(function(error) {
+    console.error("Erro ao obter a lista de arquivos:", error);
+  });
+
+// Função para abrir o modal
+function openModal() {
+  var modal = document.getElementById('modal');
+  modal.style.display = 'block';
+}
+
+// Função para fechar o modal
+function closeModal() {
+  var modal = document.getElementById('modal');
+  modal.style.display = 'none';
+}
+
+// Função chamada ao clicar no botão "Iniciar Partida"
+async function startGame() {
+  var player1Machine = document.getElementById('player1-machine').value;
+  var player2Machine = document.getElementById('player2-machine').value;
+
+  closeModal();
+}
+
+// Abre o modal assim que a página for carregada
+window.onload = openModal;
+
+// Adiciona o evento de clique ao botão "Iniciar Partida"
+var startButton = document.getElementById('start-button');
+startButton.addEventListener('click', startGame);
+
 function updateHealthBar(playerId) {
   var health = (playerId === 1) ? health1 : health2;
   var healthBar = document.getElementById("healthBar" + playerId);
@@ -148,7 +203,6 @@ function endGame() {
   var turnElement = document.getElementById("turn");
   turnElement.textContent = "Fim do Jogo!";
 }
-
 
 // Inicializa as barras de vida
 updateHealthBar(1);

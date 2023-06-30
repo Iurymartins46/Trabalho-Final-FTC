@@ -3,6 +3,7 @@
 <head>
   <title>Jogo de Players</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -37,10 +38,27 @@
   </div>
 </body>
 
-<script src="script.js"></script>
-
 <footer>
   <img src="images/complementoFundo.png">
 </footer>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h2>Escolha a máquina de cada jogador</h2>
+    <div class="player-machine">
+      <label for="player1-machine">Jogador 1:</label>
+      <select id="player1-machine"></select>
+    </div>
+    <div class="player-machine">
+      <label for="player2-machine">Jogador 2:</label>
+      <select id="player2-machine"></select>
+    </div>
+    <button id="start-button" class="start-button">Iniciar Partida</button>
+  </div>
+</div>
+
+<script src="consumirApi.js"></script>
+<script src="script.js"></script>
 
 </html>

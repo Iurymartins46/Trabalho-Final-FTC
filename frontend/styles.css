@@ -25,7 +25,6 @@ footer img {
   height: auto;
 }
 
-
 .container {
   display: flex;
   flex-direction: column;
@@ -182,4 +181,60 @@ footer img {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+
+/* Estilos para o modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 300px;
+  max-width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+}
+
+.player-machine {
+  margin-bottom: 20px;
+}
+
+.player-machine label {
+  display: block;
+}
+
+.player-machine select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 5px;
+  font-family: 'DePixelHalbfett';
+  font-size: 10px;
+}
+
+.start-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'DePixelHalbfett';
+  font-size: 14px;
+  cursor: pointer;
 }
