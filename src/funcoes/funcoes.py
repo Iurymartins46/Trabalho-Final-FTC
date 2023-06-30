@@ -1,7 +1,7 @@
 import re
 import random
 
-from src.funcoes.Moore import MooreMachine
+from Moore import MooreMachine
 
 
 expressaoRegularPadrao = r'^\w'
@@ -157,7 +157,7 @@ def moore(maquina1, maquina2):
 
 
 
-def rodadaADF(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2, count):
+def rodadaAFD(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2, count):
     pleam1 = getPleam(maquina1, numeroTransicao, leitura, estadoAtualMaquina1, vidaJogador1)
     pleam2 = getPleam(maquina2, numeroTransicao, leitura, estadoAtualMaquina2, vidaJogador2)
 
@@ -332,6 +332,170 @@ def obterEstadoInicial(maquina):
             estadoInicialMaquina = key
             break
     return estadoInicialMaquina
+
+
+
+def rodadaAFN(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2, count):
+    #se baseando nas funções feitas para AFD
+    pleam1 = getPleam(maquina1, numeroTransicao, leitura, estadoAtualMaquina1, vidaJogador1)
+    pleam2 = getPleam(maquina2, numeroTransicao, leitura, estadoAtualMaquina2, vidaJogador2)
+
+    valorAtributoJogador1 = random.randint(1, 10)
+    valorAtributoJogador2 = random.randint(1, 10)
+    vida1 = f"{vidaJogador1}"
+    vida2 = f"{vidaJogador2}"
+    mensaguemJogador1 = ""
+    mensaguemJogador2 = ""
+
+    if vidaJogador1 == 0:
+        mensaguemJogador1 = f"O duelista de {duelista1} morreu. Nao sera feita nenhuma acao mais"
+    elif pleam1 != "F":
+        estadoAtualMaquina1 = estadoAtualAUX1
+        if pleam1 == "A":
+            mensaguemJogador1 = f"Alcancou um estado de Ataque em {duelista1}" \
+                                f"\nDano no duelista de {duelista2}: {valorAtributoJogador1}"
+            vida2 = f"{vida2} - {valorAtributoJogador1}"
+            vidaJogador2 -= valorAtributoJogador1
+            if pleam2 == "D":
+                vida2 = f"{vida2} + {valorAtributoJogador2}"
+                if valorAtributoJogador1 >= valorAtributoJogador2:
+                    vidaJogador2 += valorAtributoJogador2
+                else:
+                    vidaJogador2 += valorAtributoJogador1
+
+        elif pleam1 == "C":
+            mensaguemJogador1 = f"Alcancou um estado de Cura em {duelista1}" \
+                                f"\nCura no duelista de {duelista1}: {valorAtributoJogador1}"
+            vida1 = f"{vida1} + {valorAtributoJogador1}"
+            vidaJogador1 += valorAtributoJogador1
+
+        elif pleam1 == "D":
+            mensaguemJogador1 = f"Alcancou um estado de Defesa em {duelista1}" \
+                            f"\nAparagem do duelista de {duelista1}: {valorAtributoJogador1}"
+    elif pleam1 == "F":
+        estadoAtualMaquina1 = estadoAtualAUX1
+        mensaguemJogador1 = f"O {duelista1} alcancou o estado final."
+    else:
+        mensaguemJogador1 = f"Nenhuma estado foi alcançada por{duelista1}. " \
+                            f"Nenhuma acao do duelista de {duelista1} sera feita no turno {count}"
+
+    if vidaJogador2 == 0:
+        mensaguemJogador2 = f"O duelista de {duelista2} morreu. Nao sera feita nenhuma acao mais"
+    if  pleam2 != "F":
+        estadoAtualMaquina2 = estadoAtualAUX2
+        if pleam2 == "A":
+            mensaguemJogador2 = f"Alcancou um estado de Ataque em {duelista2}" \
+                                f"\nDano no duelista de {duelista1}: {valorAtributoJogador2}"
+            vida1 = f"{vida1} - {valorAtributoJogador2}"
+            vidaJogador1 -= valorAtributoJogador2
+            if pleam1 == "D":
+                vida1 = f"{vida1} + {valorAtributoJogador1}"
+                if valorAtributoJogador2 >= valorAtributoJogador1:
+                    vidaJogador1 += valorAtributoJogador1
+                else:
+                    vidaJogador1 += valorAtributoJogador2
+
+        elif pleam2 == "C":
+            mensaguemJogador2 = f"Alcancou um estado de Cura em {duelista2}" \
+                                f"\nCura no duelista de {duelista2}: {valorAtributoJogador2}"
+            vida2 = f"{vida2} + {valorAtributoJogador2}"
+            vidaJogador2 += valorAtributoJogador2
+
+        elif pleam2 == "D":
+            mensaguemJogador2 = f"Alcancou um estado de Defesa em {duelista2}" \
+                                f"\nAparagem do duelista de {duelista2}: {valorAtributoJogador2}"
+    elif pleam2 == "F":
+        estadoAtualMaquina2 = estadoAtualAUX2
+        mensaguemJogador2 = f"O {duelista2} alcancou o estado final."
+    else:
+        mensaguemJogador1 = f"Nenhuma estado foi alcançada por{duelista2}. " \
+                            f"Nenhuma acao do duelista de {duelista2} sera feita no turno {count}"
+
+
+    if vidaJogador1 <= 0:
+        vidaJogador1 = 0
+        vida1 = f"{vidaJogador1} ({vida1} = pontos de vida zerados)"
+        vida2 = f"{vidaJogador2} ({vida2})"
+    elif vidaJogador2 <= 0:
+        vidaJogador2 = 0
+        vida2 = f"{vidaJogador2} ({vida2} = pontos de vida zerados)"
+        vida1 = f"{vidaJogador1} ({vida1})"
+    else:
+        vida1 = f"{vidaJogador1} ({vida1})"
+        vida2 = f"{vidaJogador2} ({vida2})"
+
+    if quemJoga == 1:
+        print(f"\n{mensaguemJogador1}")
+        print(f"\n{mensaguemJogador2}")
+        print(f"\nVida restante do duelista de {duelista1}: {vida1}")
+        print(f"Vida restante do duelista de {duelista2}: {vida2}")
+    else:
+        print(f"\n{mensaguemJogador2}")
+        print(f"\n{mensaguemJogador1}")
+        print(f"\nVida restante do duelista de {duelista2}: {vida2}")
+        print(f"Vida restante do duelista de {duelista1}: {vida1}")
+
+
+def AFN(maquina1, maquina2):
+    print(f"-------------------------     ENTREI AFN     -------------------------")
+    vidaJogador1 = random.randint(0, 100)
+    vidaJogador2 = vidaJogador1
+    print(f"Vida do duelista de Arazeal: {vidaJogador1}")
+    print(f"Vida do duelista de Nehrim: {vidaJogador2}")
+
+    estadoAtualMaquina1, estadoAtualMaquina2 = obterEstadoInicial(maquina1, maquina2)
+    estadoAtualAUX1 = estadoAtualAUX2 = None
+    count = 1
+    duelista1 = "Arazeal"
+    duelista2 = "Nehrim"
+    quemJoga = random.randint(1, 2)
+    outroJogador = 0
+    numeroTransicao = maquina1["transicao"]
+
+    while True:
+        print(f"\n\n->->->          Turno {count}          <-<-<-")
+        pleam1 = "Z"  # primeira letra do estado atual da maquina 1
+        pleam2 = "Z"  # primeira letra do estado atual da maquina 2
+        if quemJoga == 1 and vidaJogador1 != 0:
+            print(f" Turno de {duelista1} ")
+            outroJogador = 2
+        elif quemJoga == 2 and vidaJogador2 != 0:
+            print(f" Turno de {duelista2} ")
+            outroJogador = 1
+        elif quemJoga == 1 and vidaJogador1 == 0:
+            print(f"O duelista do jogador {duelista1} morreu. Dessa forma o turno passou para {duelista2}")
+            quemJoga = 2
+            outroJogador = 1
+        elif quemJoga == 2 and vidaJogador2 == 0:
+            print(f"O duelista do jogador {duelista2} morreu. Dessa forma o turno passou para {duelista1}")
+            quemJoga = 1
+            outroJogador = 2
+
+        leitura = None
+        while leitura not in numeroTransicao:
+            leitura = int(input("\nQual leitura você deseja fazer?: "))
+
+        vidaJogador1, vidaJogador2, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2 = rodadaADF(numeroTransicao, maquina1, maquina2, duelista1, duelista2, vidaJogador1, vidaJogador2, quemJoga, outroJogador, leitura, estadoAtualMaquina1, estadoAtualMaquina2, estadoAtualAUX1, estadoAtualAUX2, count)
+        
+        if pleam1 == "F" and pleam2 == "F":
+            if vidaJogador1 < vidaJogador2:
+                print(f"{duelista2} vitorioso!")
+            elif vidaJogador1 > vidaJogador2:
+                print(f"{duelista1} vitorioso!")
+            elif vidaJogador1 == vidaJogador2:
+                print(f"O {duelista1} e o {duelista2} empataram a partida")
+            break
+        elif pleam1 == "F":
+            print(f"{duelista1} vitorioso!")
+            break
+        elif pleam2 == "F":
+            print(f"{duelista2} vitorioso!")
+            break
+
+        aux = outroJogador
+        outroJogador = quemJoga
+        quemJoga = aux
+        count += 1
 
 
 def leituraArquivo(filename):
