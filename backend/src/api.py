@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from Action.action import SaveAction
 from Action.listArquivos import ListArquivos
 
 app = Flask(__name__)
