@@ -5,10 +5,10 @@ def main():
     while escolha not in [1, 2]:
         print("\nQual tipo de maquina deseja ultilizar:\n1 para moore\n2 para AFD")
         escolha = int(input("Qual sua escolha: "))
-    #maquina1 = funcoes.leituraArquivoMoore('teste/maquinaMoore01.txt')
-    #maquina2 = funcoes.leituraArquivoMoore('teste/maquinaMoore02.txt')
-    maquina1 = funcoes.leituraArquivoMoore('teste/maquinaAFD01.txt')
-    maquina2 = funcoes.leituraArquivoMoore('teste/maquinaAFD02.txt')
+    maquina1 = funcoes.leituraArquivo('../teste/maquinaMoore01.txt')
+    maquina2 = funcoes.leituraArquivo('../teste/maquinaMoore02.txt')
+    #maquina1 = funcoes.leituraArquivo('teste/maquinaAFD01.txt')
+    #maquina2 = funcoes.leituraArquivo('teste/maquinaAFD02.txt')
     funcoes.jogar(maquina1, maquina2, escolha)
 
 if __name__ == "__main__":
