@@ -5,7 +5,7 @@ expressaoRegularPadrao = r'^\w'
 
 class LeituraMaquina:
     def leituraArquivo(self, filename):
-        filename = "/Users/Angelo/Projects/Faculdade/FTC/Trabalho-Final-FTC/teste/" + filename
+        filename = "teste/" + filename
         print(filename)
         maquina = dict()
         with open(filename, 'r') as file:

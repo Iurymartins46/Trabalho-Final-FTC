@@ -43,7 +43,7 @@ class Batalha:
         dicionario['valorAtributoPlayer2'] = jogador2.valorAtributoJogador
         dicionario['estadoAtualPlayer2'] = jogador2.estadoAtual
 
-        with open('dicionario.json', 'w') as arquivo:
+        with open('backend/DataBase/dicionario.json', 'w') as arquivo:
             json.dump(dicionario, arquivo)
 
         response = Response()
@@ -53,7 +53,7 @@ class Batalha:
         leituraMaquina = LeituraMaquina()
 
         dicionario = dict()
-        with open('dicionario.json', 'r') as arquivo:
+        with open('backend/DataBase/dicionario.json', 'r') as arquivo:
             dicionario = json.load(arquivo)
 
         rodadaDoJogador = dicionario['rodadaDoJogador']
@@ -134,7 +134,7 @@ class Batalha:
         dicionario['valorAtributoPlayer2'] = jogador2.valorAtributoJogador
         dicionario['estadoAtualPlayer2'] = jogador2.estadoAtual
 
-        with open('dicionario.json', 'w') as arquivo:
+        with open('backend/DataBase/dicionario.json', 'w') as arquivo:
             json.dump(dicionario, arquivo)
 
         reponse = Response()
