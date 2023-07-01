@@ -1,2 +1,2 @@
-runTeste:
-	python src/main.py
+run-api:
+	python backend/api.py
