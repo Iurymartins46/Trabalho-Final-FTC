@@ -1,21 +1,12 @@
 import re
+import random
 
 expressaoRegularPadrao = r'^\w'
 
 class LeituraMaquina:
-    def obterEstadoInicial(maquina):
-        keysMaquina = maquina.keys()
-        keysMaquina = list(keysMaquina)
-        estadoInicialMaquina = ""
-        for key in keysMaquina:
-            primeiraLetra = re.search(expressaoRegularPadrao, key)
-            primeiraLetra = primeiraLetra.group()
-            if(primeiraLetra == "I"):
-                estadoInicialMaquina = key
-        return estadoInicialMaquina
-
-
-    def leituraArquivoMoore(filename):
+    def leituraArquivo(self, filename):
+        filename = "/Users/Angelo/Projects/Faculdade/FTC/Trabalho-Final-FTC/teste/" + filename
+        print(filename)
         maquina = dict()
         with open(filename, 'r') as file:
             content = file.read().rstrip('\n')
@@ -24,6 +15,7 @@ class LeituraMaquina:
         maquina["transicao"] = list[int]()
         for estado in Q:
             maquina[f"{estado}"] = [[], []]
+
         for i in range(2, len(lines)):
             transicao = lines[i]
             transicao = transicao.split(" -> ")
@@ -40,12 +32,26 @@ class LeituraMaquina:
                     maquina["transicao"].append(numeroFazTransicao)
 
         return maquina
-    
-    def getPleam(maquina, numeroTransicao, leitura, estadoAtualMaquina, vidaJogador):
-        for i in range(0, len(numeroTransicao)):
-            if maquina[f"{estadoAtualMaquina}"][0][i] == leitura and vidaJogador != 0:
-                estadoAtualAUX1  = maquina[f"{estadoAtualMaquina}"][1][i]
-                pleam = re.search(expressaoRegularPadrao, estadoAtualAUX1)
-                pleam = pleam.group()
 
-        return pleam
+    def obterPrimeiraLetraString(self, string):
+        primeiraLetra = re.search(expressaoRegularPadrao, string)
+        primeiraLetra = primeiraLetra.group()
+        return primeiraLetra
+
+    def obterEstadoInicial(self, maquina):
+        keysMaquina = maquina.keys()
+        keysMaquina = list(keysMaquina)
+        estadoInicialMaquina = None
+        for key in keysMaquina:
+            primeiraLetra = self.obterPrimeiraLetraString(key)
+            if(primeiraLetra == "I"):
+                estadoInicialMaquina = key
+                break
+        return estadoInicialMaquina
+
+    def obterAtualEstadoJogador(self, jogadorAtual, numerosTransicao, leitura):
+        estadoAtualjogador = None
+        for i in range(0, len(numerosTransicao)):
+            if jogadorAtual.maquina[f"{jogadorAtual.estadoAtual}"][0][i] == leitura:
+                estadoAtualjogador = jogadorAtual.maquina[f"{jogadorAtual.estadoAtual}"][1][i]
+        return estadoAtualjogador

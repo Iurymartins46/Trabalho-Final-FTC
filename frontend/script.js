@@ -1,4 +1,4 @@
-var currentPlayer = 1;
+var currentPlayer;
 var maxHealth = 100;
 var health1 = maxHealth;
 var health2 = maxHealth;
@@ -13,12 +13,12 @@ function preencherOpcoesSelect(arquivos) {
     var option = document.createElement("option");
     option.value = arquivo;
     option.text = arquivo;
-    player1MachineSelect.appendChild(option);
 
-    option = document.createElement("option");
-    option.value = arquivo;
-    option.text = arquivo;
-    player2MachineSelect.appendChild(option);
+    if (arquivo.includes("1")) {
+      player1MachineSelect.appendChild(option);
+    } else {
+      player2MachineSelect.appendChild(option);
+    }
   });
 }
 
@@ -48,6 +48,17 @@ async function startGame() {
   var player1Machine = document.getElementById('player1-machine').value;
   var player2Machine = document.getElementById('player2-machine').value;
 
+  escolherMaquina(player1Machine, player2Machine)
+  .then(function(data) {
+    currentPlayer = data.rodadaDoJogador;
+    maxHealth = data.player1.vida;
+    health1 = data.player1.vida;
+    health2 = data.player2.vida;
+  })
+  .catch(function(error) {
+    console.error("Erro ao realizar a escolha das maquinas", error);
+  });
+
   closeModal();
 }
 
@@ -64,114 +75,121 @@ function updateHealthBar(playerId) {
   var percentage = (health / maxHealth) * 100;
   healthBar.style.width = percentage + "%";
 }
-function ataque() {
-  // Remove a classe de animação do jogador atacado
-  var playerToAttack = (currentPlayer === 1) ? 1 : 2;
-  var playerElement = document.getElementById("player" + playerToAttack);
-  playerElement.classList.remove("shake");
 
-  // Adiciona a classe de sobreposição ao jogador atacado
-  var gifElement = document.getElementById("player" + playerToAttack + "-gif");
+function distribuirAnimacao(data){
+  health1 = data.player1.vidaAtual
+  health2 = data.player2.vidaAtual
+  updateHealthBar(1)
+  updateHealthBar(2)
+
+  //Player 1
+  if (data.player1.estadoAtual.charAt(0) == "A"){
+    ataque(1);
+  } else if (data.player1.estadoAtual.charAt(0) == "D"){
+    defesa(1);
+  } else if (data.player1.estadoAtual.charAt(0) == "C"){
+    cura(1);
+  }
+
+  //Player 2
+  if (data.player2.estadoAtual.charAt(0) == "A"){
+    ataque(2);
+  } else if (data.player2.estadoAtual.charAt(0) == "D"){
+    defesa(2);
+  } else if (data.player2.estadoAtual.charAt(0) == "C"){
+    cura(2);
+  }
+
+  if (health2 <= 0) {
+    var closeElement = document.querySelector("#player2 .close");
+    closeElement.style.display = "block";
+    endGame();
+    return;
+  }
+
+  if (health1 <= 0) {
+    var closeElement = document.querySelector("#player1 .close");
+    closeElement.style.display = "block";
+    endGame();
+    return;
+  }
+
+  // Alterna a vez para o próximo jogador
+  currentPlayer = data.rodadaDoJogador;
+  updateTurnMessage();
+}
+
+function click0(){
+  rodada(0)
+  .then(function(data) {
+    distribuirAnimacao(data);
+  })
+  .catch(function(error) {
+    console.error("Erro ao realizar a rodada", error);
+  });
+}
+
+function click1(){
+  rodada(1)
+  .then(function(data) {
+    distribuirAnimacao(data);
+  })
+  .catch(function(error) {
+    console.error("Erro ao realizar a rodada", error);
+  });
+}
+
+function click2(){
+  rodada(2)
+  .then(function(data) {
+    distribuirAnimacao(data);
+  })
+  .catch(function(error) {
+    console.error("Erro ao realizar a rodada", error);
+  });
+}
+
+function ataque(playerAttack) {
+  var gifElement = document.getElementById("player" + playerAttack + "-gif");
   gifElement.classList.add("player-gif");
-
-  // Exibe o GIF de ataque sobreposto ao jogador
   gifElement.style.display = "block";
 
-  // Define o caminho do GIF de ataque com base no jogador
   var gifPath = "";
   var duration = 0;
-  if (playerToAttack === 1) {
+  if (playerAttack == 1) {
     gifPath = "images/Tank1Atk.gif";
-    duration = 1000; // 1.0 segundos
+    duration = 1000;
   } else {
     gifPath = "images/Tank2Atk.gif";
-    duration = 1000; // 1.0 segundos
+    duration = 1000;
   }
 
-  // Define a imagem do GIF de ataque
   gifElement.style.backgroundImage = "url('" + gifPath + "')";
-
-  // Atualiza a vida do jogador atual
-  if (currentPlayer === 1) {
-    health2 -= 20;
-    updateHealthBar(2);
-
-    if (health2 <= 0) {
-      // Exibe a caveira e encerra o jogo
-      var closeElement = document.querySelector("#player2 .close");
-      closeElement.style.display = "block";
-      endGame();
-      return;
-    }
-  } else {
-    health1 -= 20;
-    updateHealthBar(1);
-
-    if (health1 <= 0) {
-      // Exibe a caveira e encerra o jogo
-      var closeElement = document.querySelector("#player1 .close");
-      closeElement.style.display = "block";
-      endGame();
-      return;
-    }
-  }
 
   // Restaura a imagem original após a duração definida
   setTimeout(function() {
     gifElement.style.display = "none";
     gifElement.style.backgroundImage = "none";
   }, duration);
-
-  // Alterna a vez para o próximo jogador
-  currentPlayer = (currentPlayer === 1) ? 2 : 1;
-  updateTurnMessage();
 }
 
 
-function defesa() {
-  // Lógica de defesa do jogador atual
-
-  // Adiciona a classe de animação de defesa ao jogador atual
-  var playerElement = document.getElementById("player" + currentPlayer);
+function defesa(playerDefend) {
+  var playerElement = document.getElementById("player" + playerDefend);
   playerElement.classList.add("defense");
-
-  // Atualiza a vida do jogador atual
-  if (currentPlayer === 1) {
-    health1 += 10;
-    updateHealthBar(1);
-  } else {
-    health2 += 10;
-    updateHealthBar(2);
-  }
-
-  // Alterna a vez para o próximo jogador
-  currentPlayer = (currentPlayer === 1) ? 2 : 1;
-  updateTurnMessage();
-
-  // Remove a classe de animação após um tempo
+  updateHealthBar(playerDefend);
   setTimeout(function() {
     playerElement.classList.remove("defense");
   }, 500);
 }
 
-function recuperarVida() {
-  // Lógica de recuperação de vida do jogador atual
-
-  // Atualiza a vida do jogador atual
-  if (currentPlayer === 1) {
-    health1 = maxHealth;
-    updateHealthBar(1);
-  } else {
-    health2 = maxHealth;
-    updateHealthBar(2);
-  }
-
+function cura(playerCura) {
   // Adiciona a classe de pulsação ao jogador atual
-  var playerElement = document.getElementById("player" + currentPlayer);
+  var playerElement = document.getElementById("player" + playerCura);
   playerElement.classList.add("pulse");
 
   // Mostra o ícone "+" durante a pulsação
-  var plusIcon = document.getElementById("plusIcon" + currentPlayer);
+  var plusIcon = document.getElementById("plusIcon" + playerCura);
   plusIcon.style.display = "inline";
 
   // Remove a classe de pulsação e oculta o ícone após um tempo
@@ -179,10 +197,6 @@ function recuperarVida() {
     playerElement.classList.remove("pulse");
     plusIcon.style.display = "none";
   }, 1000);
-
-  // Alterna a vez para o próximo jogador
-  currentPlayer = (currentPlayer === 1) ? 2 : 1;
-  updateTurnMessage();
 }
 
 function updateTurnMessage() {
