@@ -1,1 +1,2 @@
-from .funcoes import *
+#from .funcoes import *
+from .funcoesAtualizadas import *
