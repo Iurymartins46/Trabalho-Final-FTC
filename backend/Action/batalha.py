@@ -1,12 +1,15 @@
 from Service.leituraMaquina import LeituraMaquina
+from Service.manipularBanco import MaipulaBanco
 from Domain.machine import Machine
 from Responder.response import Response
-import random, json, re
+import random, re
+
 expressaoRegularPadrao = r'^\w'
+banco = MaipulaBanco()
+leitura = LeituraMaquina()
 
 class Batalha:
     def leituraMaquina(self, request):
-        leitura = LeituraMaquina()
         player1 = request.json.get('player1')
         player2 = request.json.get('player2')
 
@@ -23,28 +26,7 @@ class Batalha:
         outroJogador = 0
         numerosTransicao = maquina1["transicao"]
 
-        dicionario = dict()
-        dicionario['rodadaDoJogador'] = rodadaDoJogador
-        dicionario['jogadaJogador1Executar'] = True
-        dicionario['jogadaJogador2Executar'] = True
-        dicionario['outroJogador'] = outroJogador
-
-        dicionario['nomePlayer1'] = jogador1.nomeJogador
-        dicionario['vidaPlayer1'] = jogador1.vida
-        dicionario['vidaAtualPlayer1'] = jogador1.vidaAtual
-        dicionario['maquinaPlayer1'] = jogador1.maquina
-        dicionario['valorAtributoPlayer1'] = jogador1.valorAtributoJogador
-        dicionario['estadoAtualPlayer1'] = jogador1.estadoAtual
-
-        dicionario['nomePlayer2'] = jogador2.nomeJogador
-        dicionario['vidaPlayer2'] = jogador2.vida
-        dicionario['vidaAtualPlayer2'] = jogador2.vidaAtual
-        dicionario['maquinaPlayer2'] = jogador2.maquina
-        dicionario['valorAtributoPlayer2'] = jogador2.valorAtributoJogador
-        dicionario['estadoAtualPlayer2'] = jogador2.estadoAtual
-
-        with open('backend/DataBase/dicionario.json', 'w') as arquivo:
-            json.dump(dicionario, arquivo)
+        banco.saveJson(rodadaDoJogador, True, True, outroJogador, jogador1, jogador2)
 
         response = Response()
         return response.formatPlayerInfo(jogador1, jogador2, rodadaDoJogador)
@@ -52,24 +34,7 @@ class Batalha:
     def rodada(self, request):
         leituraMaquina = LeituraMaquina()
 
-        dicionario = dict()
-        with open('backend/DataBase/dicionario.json', 'r') as arquivo:
-            dicionario = json.load(arquivo)
-
-        rodadaDoJogador = dicionario['rodadaDoJogador']
-        jogadaJogador1Executar = dicionario['jogadaJogador1Executar']
-        jogadaJogador2Executar = dicionario['jogadaJogador2Executar']
-        outroJogador = dicionario['outroJogador']
-
-        jogador1 = Machine(dicionario['nomePlayer1'], dicionario['vidaPlayer1'], dicionario['maquinaPlayer1'])
-        jogador1.vidaAtual = dicionario['vidaAtualPlayer1']
-        jogador1.valorAtributoJogador = dicionario['valorAtributoPlayer1']
-        jogador1.estadoAtual = dicionario['estadoAtualPlayer1']
-
-        jogador2 = Machine(dicionario['nomePlayer2'], dicionario['vidaPlayer2'], dicionario['maquinaPlayer2'])
-        jogador2.vidaAtual = dicionario['vidaAtualPlayer2']
-        jogador2.valorAtributoJogador = dicionario['valorAtributoPlayer2']
-        jogador2.estadoAtual = dicionario['estadoAtualPlayer2']
+        rodadaDoJogador, jogadaJogador1Executar, jogadaJogador2Executar, outroJogador, jogador1, jogador2 = banco.consumeJson()
 
         if rodadaDoJogador == 1:
             outroJogador = 2
@@ -114,28 +79,7 @@ class Batalha:
         outroJogador = rodadaDoJogador
         rodadaDoJogador = aux
 
-        dicionario = dict()
-        dicionario['rodadaDoJogador'] = rodadaDoJogador
-        dicionario['jogadaJogador1Executar'] = jogadaJogador1Executar
-        dicionario['jogadaJogador2Executar'] = jogadaJogador2Executar
-        dicionario['outroJogador'] = outroJogador
-
-        dicionario['nomePlayer1'] = jogador1.nomeJogador
-        dicionario['vidaPlayer1'] = jogador1.vida
-        dicionario['vidaAtualPlayer1'] = jogador1.vidaAtual
-        dicionario['maquinaPlayer1'] = jogador1.maquina
-        dicionario['valorAtributoPlayer1'] = jogador1.valorAtributoJogador
-        dicionario['estadoAtualPlayer1'] = jogador1.estadoAtual
-
-        dicionario['nomePlayer2'] = jogador2.nomeJogador
-        dicionario['vidaPlayer2'] = jogador2.vida
-        dicionario['vidaAtualPlayer2'] = jogador2.vidaAtual
-        dicionario['maquinaPlayer2'] = jogador2.maquina
-        dicionario['valorAtributoPlayer2'] = jogador2.valorAtributoJogador
-        dicionario['estadoAtualPlayer2'] = jogador2.estadoAtual
-
-        with open('backend/DataBase/dicionario.json', 'w') as arquivo:
-            json.dump(dicionario, arquivo)
+        banco.saveJson(rodadaDoJogador, jogadaJogador1Executar, jogadaJogador2Executar, outroJogador, jogador1, jogador2)
 
         reponse = Response()
         return reponse.formatPlayerInfo(jogador1, jogador2, rodadaDoJogador)
