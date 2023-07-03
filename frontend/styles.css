@@ -69,7 +69,7 @@ footer img {
   top: 45px;
   width: 300px; /* Ajuste a largura conforme necessário */
   height: 45px; /* Ajuste a altura conforme necessário */
-  background-color: #ddd; /* Cor de fundo da barra de vida */
+  background-color: #868080; /* Cor de fundo da barra de vida */
 }
 
 .health-bar-2 {
@@ -78,7 +78,7 @@ footer img {
   top: 45px;
   width: 300px; /* Ajuste a largura conforme necessário */
   height: 45px; /* Ajuste a altura conforme necessário */
-  background-color: #ddd; /* Cor de fundo da barra de vida */
+  background-color: #868080; /* Cor de fundo da barra de vida */
   transform: scaleX(-1); /* Inverte a escala horizontalmente */
 }
 
@@ -87,6 +87,26 @@ footer img {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+.health-text {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding-right: 10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.health-text2 {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleX(-1);
+  padding-left: 10px;
+  font-size: 14px;
+  color: #ffffff;
 }
 
 .health-bar-progress {
@@ -141,6 +161,13 @@ footer img {
   height: 500px;
   display: none;
 }
+
+/* Add this to your CSS */
+.lost-health {
+  background-color: #ff0000; /* Red background color for lost health */
+  animation: blink-animation 0.5s infinite;
+}
+
 
 @keyframes defense-animation {
   0% { opacity: 1; }

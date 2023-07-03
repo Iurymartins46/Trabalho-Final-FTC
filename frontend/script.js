@@ -1,5 +1,5 @@
 var currentPlayer;
-var maxHealth = 100;
+var maxHealth = 10;
 var health1 = maxHealth;
 var health2 = maxHealth;
 
@@ -74,49 +74,93 @@ function updateHealthBar(playerId) {
   var healthBar = document.getElementById("healthBar" + playerId);
   var percentage = (health / maxHealth) * 100;
   healthBar.style.width = percentage + "%";
+
+  // Atualiza o número da saúde à direita da barra
+  var healthText = document.getElementById("healthText" + playerId);
+  healthText.textContent = health + "/" + maxHealth;
 }
 
-function distribuirAnimacao(data){
-  health1 = data.player1.vidaAtual
-  health2 = data.player2.vidaAtual
-  updateHealthBar(1)
-  updateHealthBar(2)
+function displayLostHealth(playerId, lostHealth) {
+  var healthBar = document.getElementById("healthBar" + playerId);
+  var currentHealth = (playerId === 1) ? health1 : health2;
+  var newHealth = currentHealth - lostHealth;
 
-  //Player 1
-  if (data.player1.estadoAtual.charAt(0) == "A"){
-    ataque(1);
-  } else if (data.player1.estadoAtual.charAt(0) == "D"){
-    defesa(1);
-  } else if (data.player1.estadoAtual.charAt(0) == "C"){
-    cura(1);
+  if (newHealth < 0) {
+    newHealth = 0;
   }
 
-  //Player 2
-  if (data.player2.estadoAtual.charAt(0) == "A"){
-    ataque(2);
-  } else if (data.player2.estadoAtual.charAt(0) == "D"){
-    defesa(2);
-  } else if (data.player2.estadoAtual.charAt(0) == "C"){
-    cura(2);
-  }
+  var percentage = (newHealth / maxHealth) * 100;
+  healthBar.style.width = percentage + "%";
+  healthBar.classList.add("lost-health");
 
-  if (health2 <= 0) {
-    var closeElement = document.querySelector("#player2 .close");
-    closeElement.style.display = "block";
-    endGame();
-    return;
-  }
+  // Remove the "lost-health" class after a delay
+  setTimeout(function() {
+    healthBar.classList.remove("lost-health");
+  }, 500);
+}
 
-  if (health1 <= 0) {
-    var closeElement = document.querySelector("#player1 .close");
-    closeElement.style.display = "block";
-    endGame();
-    return;
-  }
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  // Alterna a vez para o próximo jogador
-  currentPlayer = data.rodadaDoJogador;
-  updateTurnMessage();
+async function distribuirAnimacao(data){
+  if (data.vencedor != null){
+    jogadorGanhou(data.vencedor)
+  }else{
+    dano1 = health1 - data.player1.vidaAtual
+    dano2 = health2 - data.player2.vidaAtual
+
+    if (data.player1.vidaAtual < health1){
+      mostrarVidaPerdida(1, dano1)
+    }
+
+    if (data.player2.vidaAtual < health2){
+      mostrarVidaPerdida(2, dano2)
+    }
+
+    await sleep(1000);
+
+    health1 = data.player1.vidaAtual
+    health2 = data.player2.vidaAtual
+    updateHealthBar(1)
+    updateHealthBar(2)
+
+    //Player 1
+    if (data.player1.estadoAtual.charAt(0) == "A"){
+      ataque(1);
+    } else if (data.player1.estadoAtual.charAt(0) == "D"){
+      defesa(1);
+    } else if (data.player1.estadoAtual.charAt(0) == "C"){
+      cura(1);
+    }
+
+    //Player 2
+    if (data.player2.estadoAtual.charAt(0) == "A"){
+      ataque(2);
+    } else if (data.player2.estadoAtual.charAt(0) == "D"){
+      defesa(2);
+    } else if (data.player2.estadoAtual.charAt(0) == "C"){
+      cura(2);
+    }
+
+    if (health2 <= 0) {
+      var closeElement = document.querySelector("#player2 .close");
+      closeElement.style.display = "block";
+      endGame();
+      return;
+    }
+
+    if (health1 <= 0) {
+      var closeElement = document.querySelector("#player1 .close");
+      closeElement.style.display = "block";
+      endGame();
+      return;
+    }
+
+    // Alterna a vez para o próximo jogador
+    currentPlayer = data.rodadaDoJogador;
+    updateTurnMessage();
+  }
 }
 
 function click0(){
@@ -216,6 +260,28 @@ function endGame() {
   // Atualiza a mensagem de turno
   var turnElement = document.getElementById("turn");
   turnElement.textContent = "Fim do Jogo!";
+}
+
+function jogadorGanhou(vencedor) {
+  // Desabilita os botões de ação
+  var buttons = document.querySelectorAll(".options button");
+  buttons.forEach(function (button) {
+    button.disabled = true;
+  });
+
+  // Atualiza a mensagem de turno
+  var turnElement = document.getElementById("turn");
+  turnElement.textContent = vencedor + " Venceu!";
+}
+
+function mostrarVidaPerdida(playerId, lostHealth) {
+  var healthText = document.getElementById("healthText" + playerId);
+  healthText.textContent = -lostHealth;
+  healthText.classList.add("lost-health");
+
+  setTimeout(function() {
+    healthText.classList.remove("lost-health");
+  }, 1000);
 }
 
 // Inicializa as barras de vida

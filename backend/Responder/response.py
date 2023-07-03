@@ -10,7 +10,7 @@ class Response:
 
         return data
 
-    def formatPlayerInfo(self, player1, player2, rodadaDoJogador):
+    def formatPlayerInfo(self, player1, player2, rodadaDoJogador, continuar, vencedor):
         data = {
             "player1" : {
                 "nomeJogador": player1.nomeJogador,
@@ -26,7 +26,9 @@ class Response:
                 "valorAtributoJogador": player2.valorAtributoJogador,
                 "estadoAtual": player2.estadoAtual
             },
-            "rodadaDoJogador" : rodadaDoJogador
+            "rodadaDoJogador" : rodadaDoJogador,
+            "continuar": continuar,
+            "vencedor": vencedor
         }
 
         return data

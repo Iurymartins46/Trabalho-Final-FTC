@@ -22,9 +22,12 @@ class MaipulaBanco:
         jogador2.valorAtributoJogador = dicionario['valorAtributoPlayer2']
         jogador2.estadoAtual = dicionario['estadoAtualPlayer2']
 
-        return rodadaDoJogador, jogadaJogador1Executar, jogadaJogador2Executar, outroJogador, jogador1, jogador2
+        continuar = dicionario['continuar']
+        vencedor = dicionario['vencedor']
 
-    def saveJson(self, rodadaDoJogador, jogadaJogador1Executar, jogadaJogador2Executar, outroJogador, jogador1, jogador2):
+        return rodadaDoJogador, jogadaJogador1Executar, jogadaJogador2Executar, outroJogador, jogador1, jogador2, continuar, vencedor
+
+    def saveJson(self, rodadaDoJogador, jogadaJogador1Executar, jogadaJogador2Executar, outroJogador, jogador1, jogador2, continuar, vencedor):
         dicionario = dict()
         dicionario['rodadaDoJogador'] = rodadaDoJogador
         dicionario['jogadaJogador1Executar'] = jogadaJogador1Executar
@@ -44,6 +47,9 @@ class MaipulaBanco:
         dicionario['maquinaPlayer2'] = jogador2.maquina
         dicionario['valorAtributoPlayer2'] = jogador2.valorAtributoJogador
         dicionario['estadoAtualPlayer2'] = jogador2.estadoAtual
+
+        dicionario['continuar'] = continuar
+        dicionario['vencedor'] = continuar
 
         with open('backend/DataBase/dicionario.json', 'w') as arquivo:
             json.dump(dicionario, arquivo)
