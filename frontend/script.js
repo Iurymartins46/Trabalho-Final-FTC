@@ -54,10 +54,13 @@ async function startGame() {
     maxHealth = data.player1.vida;
     health1 = data.player1.vida;
     health2 = data.player2.vida;
+    updateHealthBar(1);
+    updateHealthBar(2);
   })
   .catch(function(error) {
     console.error("Erro ao realizar a escolha das maquinas", error);
   });
+
 
   closeModal();
 }

@@ -4,7 +4,7 @@ import os
 class ListArquivos:
     def list(self):
         response = Response()
-        caminho = "/Users/Angelo/Projects/Faculdade/FTC/Trabalho-Final-FTC/teste"
+        caminho = "teste/"
         try:
             arquivos = os.listdir(caminho)
         except OSError as e:
