@@ -4,7 +4,6 @@ from Domain.machine import Machine
 class Response:
     def formatArquivos(self, arquivos):
         data = {
-            "status" : "Deu bom",
             "arquivos" : arquivos
         }
 

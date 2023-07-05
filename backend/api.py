@@ -14,7 +14,7 @@ def listarArquivos():
 @app.route('/escolherMaquina', methods=['POST'])
 def escolherMaquina():
     btl = Batalha()
-    return btl.leituraMaquina(request), 200
+    return btl.leituraMaquina(request), 201
 
 @app.route('/rodada', methods=['POST'])
 def rodada():
