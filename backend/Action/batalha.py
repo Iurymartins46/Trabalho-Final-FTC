@@ -46,10 +46,10 @@ class Batalha:
             leitura = request.json.get('entrada')
 
             jogador1.valorAtributoJogador = random.randint(1, 10)
-            proximoEstadoJogador1 = leituraMaquina.obterAtualEstadoJogador(jogador1, jogador1.maquina["transicao"], leitura)
+            proximoEstadoJogador1 = leituraMaquina.obterAtualEstadoJogador(jogador1, leitura)
 
             jogador2.valorAtributoJogador = random.randint(1, 10)
-            proximoEstadoJogador2 = leituraMaquina.obterAtualEstadoJogador(jogador2, jogador1.maquina["transicao"], leitura)
+            proximoEstadoJogador2 = leituraMaquina.obterAtualEstadoJogador(jogador2, leitura)
 
             if rodadaDoJogador == 1:
                 if jogadaJogador1Executar == True:

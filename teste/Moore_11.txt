@@ -1,8 +1,8 @@
-Q: IN A1 C1 D1
-I: IN
-IN -> D1 | 1
-IN -> A1 | 0
-IN -> C1 | 2
+Q: IR A1 C1 D1
+I: IR
+IR -> D1 | 1
+IR -> A1 | 0
+IR -> C1 | 2
 A1 -> D1 | 1
 A1 -> A1 | 0
 A1 -> C1 | 2
