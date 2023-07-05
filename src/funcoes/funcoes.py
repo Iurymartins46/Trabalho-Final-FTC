@@ -3,15 +3,15 @@ import random
 
 expressaoRegularPadrao = r'^\w'
 
-from src.funcoes.Maquina import Machine
+from funcoes.Maquina import Machine
 
 
 def executaBatalha(maquina1, maquina2):
-    jogador1 = Machine("Arazeal", 20, maquina1)
-    jogador2 = Machine("Nehrim", 12, maquina2)
+    jogador1 = Machine("Russia", 20, maquina1)
+    jogador2 = Machine("Ucrania", 12, maquina2)
     print("\n\n-------------------------------------------------------------------------")
-    print(f"Vida do duelista de Arazeal: {jogador1.vida}")
-    print(f"Vida do duelista de Nehrim: {jogador2.vida}")
+    print(f"Vida do duelista de Russia: {jogador1.vida}")
+    print(f"Vida do duelista de Ucrania: {jogador2.vida}")
 
     jogador1.estadoAtual = obterEstadoInicial(maquina1)
     jogador2.estadoAtual = obterEstadoInicial(maquina2)
