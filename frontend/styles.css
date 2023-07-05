@@ -275,3 +275,19 @@ footer img {
   cursor: pointer;
 }
 
+.message2 {
+  float: right; /* Alinha o elemento à direita */
+  margin-left: 10px;
+  margin-top: 10px;
+  font-family: 'DePixelHalbfett';
+  font-size: 20px;
+  transform: scaleX(-1);
+}
+
+.message1 {
+  float: right; /* Alinha o elemento à direita */
+  margin-right: 10px;
+  margin-top: 10px;
+  font-family: 'DePixelHalbfett';
+  font-size: 20px;
+}
