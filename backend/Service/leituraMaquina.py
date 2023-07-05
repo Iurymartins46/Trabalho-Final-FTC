@@ -49,9 +49,10 @@ class LeituraMaquina:
                 break
         return estadoInicialMaquina
 
-    def obterAtualEstadoJogador(self, jogadorAtual, numerosTransicao, leitura):
-        estadoAtualjogador = None
-        for i in range(0, len(numerosTransicao)):
+    def obterAtualEstadoJogador(self, jogadorAtual, leitura):
+        estadoAtualjogador = list()
+        for i in range(0, len(jogadorAtual.maquina[f"{jogadorAtual.estadoAtual}"][0])):
             if jogadorAtual.maquina[f"{jogadorAtual.estadoAtual}"][0][i] == leitura:
-                estadoAtualjogador = jogadorAtual.maquina[f"{jogadorAtual.estadoAtual}"][1][i]
-        return estadoAtualjogador
+                estadoAtualjogador.append(jogadorAtual.maquina[f"{jogadorAtual.estadoAtual}"][1][i])
+        posicao = random.randint(0, (len(estadoAtualjogador) - 1))
+        return estadoAtualjogador[posicao]
