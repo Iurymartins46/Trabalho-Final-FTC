@@ -16,8 +16,8 @@ class Batalha:
         maquina1 = leitura.leituraArquivo(player1)
         maquina2 = leitura.leituraArquivo(player2)
 
-        jogador1 = Machine("Arazeal", 50, maquina1)
-        jogador2 = Machine("Nehrim", 50, maquina2)
+        jogador1 = Machine("Russia", 50, maquina1)
+        jogador2 = Machine("Ucrania", 50, maquina2)
 
         jogador1.estadoAtual = leitura.obterEstadoInicial(maquina1)
         jogador2.estadoAtual = leitura.obterEstadoInicial(maquina2)
